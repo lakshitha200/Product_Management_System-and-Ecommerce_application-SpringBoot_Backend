@@ -1,5 +1,6 @@
 package com.PMS.PMS.Model;
 
+import com.PMS.PMS.Model.Products.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,16 +21,15 @@ public class Order {
     private long orderNumber;
     private String orderDate;
     private int quantity;
-    private int orderPrice;
     private String orderState;
+    private String colour;
 
-//    @ManyToOne
-//    @JoinColumn (name = "fk_product")
-//    private Product product;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "fk_product")
+    private Product product;
 
-    private int productId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "fk_customer")
     private Customer customer;
 

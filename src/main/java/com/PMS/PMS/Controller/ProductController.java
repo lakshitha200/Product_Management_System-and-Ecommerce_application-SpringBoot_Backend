@@ -1,6 +1,7 @@
 package com.PMS.PMS.Controller;
 
-import com.PMS.PMS.Model.Product;
+import com.PMS.PMS.Dto.ProductDto;
+import com.PMS.PMS.Model.Products.Product;
 import com.PMS.PMS.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,8 @@ public class ProductController {
     // create product
     @PostMapping()
     @PreAuthorize("hasRole('ADMIN') or hasRole('ADMIN_MANAGER')")
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
-        return new ResponseEntity<Product>(productService.createProduct(product), HttpStatus.CREATED);
+    public ResponseEntity<Product> saveProduct(@RequestBody ProductDto productDto){
+        return new ResponseEntity<Product>(productService.createProduct(productDto), HttpStatus.CREATED);
     }
 
     // Get All product
@@ -38,8 +39,8 @@ public class ProductController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('ADMIN_MANAGER')")
-    public ResponseEntity<Product> updateProduct(@PathVariable("id") long id ,@RequestBody Product product){
-        return new ResponseEntity<Product>(productService.updateProduct(product,id),HttpStatus.OK);
+    public ResponseEntity<Product> updateProduct(@PathVariable("id") long id ,@RequestBody ProductDto productDto){
+        return new ResponseEntity<Product>(productService.updateProduct(productDto,id),HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

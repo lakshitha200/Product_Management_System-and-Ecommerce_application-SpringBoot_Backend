@@ -1,4 +1,4 @@
-package com.PMS.PMS.Model;
+package com.PMS.PMS.Model.Products;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,6 +15,6 @@ public class ProductImages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(nullable = false, unique = true)
-    private String name;
+
+    private String path;
 }

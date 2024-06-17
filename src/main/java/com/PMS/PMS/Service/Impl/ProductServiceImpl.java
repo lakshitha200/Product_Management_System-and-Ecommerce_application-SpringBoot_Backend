@@ -1,7 +1,8 @@
 package com.PMS.PMS.Service.Impl;
 
+import com.PMS.PMS.Dto.ProductDto;
 import com.PMS.PMS.Exception.ResourceNotFoundException;
-import com.PMS.PMS.Model.Product;
+import com.PMS.PMS.Model.Products.Product;
 import com.PMS.PMS.Repository.ProductRepository;
 import com.PMS.PMS.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,22 @@ public class ProductServiceImpl implements ProductService {
 
     //save product
     @Override
-    public Product createProduct(Product product) {
+    public Product createProduct(ProductDto productDto) {
+        Product product = new Product();
+        product.setNumber(productDto.getNumber());
+        product.setModel(productDto.getModel());
+        product.setBrand(productDto.getBrand());
+        product.setName(productDto.getBrand()+" "+productDto.getModel());
+        product.setType(productDto.getType());
+        product.setPrice(productDto.getPrice());
+        product.setDiscount(productDto.getDiscount());
+        product.setDiscountAvailable(productDto.isDiscountAvailable());
+        product.setNewPrice(productDto.getPrice() - (productDto.getPrice()*productDto.getDiscount()/100));
+        product.setStock(productDto.getStock());
+        product.setImages(productDto.getImages());
+        product.setSpecifications(productDto.getSpecifications());
+        product.setColors(productDto.getColors());
+
         return productRepository.save(product);
     }
 
@@ -41,19 +57,24 @@ public class ProductServiceImpl implements ProductService {
 
     //Update Products
     @Override
-    public Product updateProduct(Product product, long id) {
+    public Product updateProduct(ProductDto productDto, long id) {
         Product exsitingProduct = productRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Product is Not Found")
         );
-        exsitingProduct.setNumber(product.getNumber());
-        exsitingProduct.setPname(product.getPname());
-        exsitingProduct.setPrice(product.getPrice());
-        exsitingProduct.setCategory(product.getCategory());
-        exsitingProduct.setDescription(product.getDescription());
-        exsitingProduct.setStock(product.getStock());
-        exsitingProduct.setImg(product.getImg());
-        exsitingProduct.setDiscountAvailable(product.isDiscountAvailable());
-        exsitingProduct.setDiscount(product.getDiscount());
+
+        exsitingProduct.setNumber(productDto.getNumber());
+        exsitingProduct.setModel(productDto.getModel());
+        exsitingProduct.setBrand(productDto.getBrand());
+        exsitingProduct.setName(productDto.getBrand()+" "+productDto.getModel());
+        exsitingProduct.setType(productDto.getType());
+        exsitingProduct.setPrice(productDto.getPrice());
+        exsitingProduct.setDiscount(productDto.getDiscount());
+        exsitingProduct.setDiscountAvailable(productDto.isDiscountAvailable());
+        exsitingProduct.setNewPrice(productDto.getPrice() - (productDto.getPrice()*productDto.getDiscount()/100));
+        exsitingProduct.setStock(productDto.getStock());
+        exsitingProduct.setImages(productDto.getImages());
+        exsitingProduct.setSpecifications(productDto.getSpecifications());
+        exsitingProduct.setColors(productDto.getColors());
 
         productRepository.save(exsitingProduct);
         return exsitingProduct;

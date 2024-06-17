@@ -25,6 +25,12 @@ public class CustomerServiceImpl  implements CustomerService{
     @Override
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
+//        customerList.stream()
+//                .map(customer -> {
+//                    return customer.getName().substring(2);
+//                });
+
+//
     }
 
     //update

@@ -29,11 +29,12 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin createAdmin(AdminRoleDto adminRoleDto) {
         String encodedPassword = passwordEncoder.encode(adminRoleDto.getPassword());
+        String neUsername = "A_"+adminRoleDto.getUsername();
         Admin newAdmin = new Admin(
                 adminRoleDto.getId(),
                 adminRoleDto.getNumber(),
                 adminRoleDto.getName(),
-                adminRoleDto.getUsername(),
+                neUsername,
                 adminRoleDto.getEmail(),
                 encodedPassword,
                 adminRoleDto.getImg(),
@@ -62,7 +63,7 @@ public class AdminServiceImpl implements AdminService {
         );
         exsitingAdmin.setNumber(adminRoleDto.getNumber());
         exsitingAdmin.setName(adminRoleDto.getName());
-        exsitingAdmin.setUsername(adminRoleDto.getUsername());
+        exsitingAdmin.setUsername("A_"+adminRoleDto.getUsername());
         exsitingAdmin.setEmail(adminRoleDto.getEmail());
         exsitingAdmin.setPassword(this.passwordEncoder.encode(adminRoleDto.getPassword()));
         exsitingAdmin.setPhone(adminRoleDto.getPhone());

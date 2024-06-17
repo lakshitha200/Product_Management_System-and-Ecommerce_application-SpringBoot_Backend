@@ -1,11 +1,6 @@
 package com.PMS.PMS.Controller;
 
-import com.PMS.PMS.Dto.CustomerSignUpDto;
-import com.PMS.PMS.Model.Customer;
 import com.PMS.PMS.Model.Order;
-import com.PMS.PMS.Model.Product;
-import com.PMS.PMS.Repository.CustomerRepository;
-import com.PMS.PMS.Repository.OrderRepository;
 import com.PMS.PMS.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

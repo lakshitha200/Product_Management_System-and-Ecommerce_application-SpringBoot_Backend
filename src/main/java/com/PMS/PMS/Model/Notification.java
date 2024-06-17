@@ -15,4 +15,10 @@ public class Notification {
     private String createAt;
     private String message;
     private String type;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "fk_customer")
+    private Customer customer;
+
+    private long productId;
 }

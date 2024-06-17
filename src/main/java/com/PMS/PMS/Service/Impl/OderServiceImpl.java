@@ -40,7 +40,13 @@ public class OderServiceImpl implements OrderService {
 
     @Override
     public Order updateOrder(Order order, long id) {
-        return null;
+        Order order1 = orderRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Product is Not Found")
+        );
+
+        order1.setOrderState(order.getOrderState());
+
+        return orderRepository.save(order1);
     }
 
     @Override

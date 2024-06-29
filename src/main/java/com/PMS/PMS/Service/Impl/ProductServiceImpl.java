@@ -47,12 +47,10 @@ public class ProductServiceImpl implements ProductService {
     //get by id
     @Override
     public Product getProductById(long id) {
-        Optional<Product> exsitingProduct = productRepository.findById(id);
-        if(exsitingProduct.isPresent()){
-            return exsitingProduct.get();
-        }else {
-            throw new ResourceNotFoundException("Cannot Find");
-        }
+        Product exsitingProduct = productRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Product is Not Found")
+        );
+        return exsitingProduct;
     }
 
     //Update Products

@@ -30,12 +30,10 @@ public class OderServiceImpl implements OrderService {
 
     @Override
     public Order getOrdersById(long id) {
-        Optional<Order> exsitingOrder = orderRepository.findById(id);
-        if (exsitingOrder.isPresent()) {
-            return exsitingOrder.get();
-        } else {
-            throw new ResourceNotFoundException("Cannot Find");
-        }
+        Order exsitingOrder = orderRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Product is Not Found")
+        );
+        return exsitingOrder;
     }
 
     @Override

@@ -2,11 +2,15 @@ package com.PMS.PMS.Model.Products;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "products_specifications")
 public class ProductSpecifications {
 
